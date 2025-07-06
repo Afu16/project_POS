@@ -1,4 +1,4 @@
-@extends('admin.barangs.layout')
+@extends('kasir.barangs.layout')
  
 @section('content')
 
@@ -19,7 +19,7 @@
             <h2 class="text-xl font-bold mb-4">Tambah Barang</h2>
             <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-lg">&times;</button>
 
-            <form action="{{ route('admin.barangs.store') }}" method="POST">
+            <form action="{{ route('kasir.barangs.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label class="block font-semibold mb-1">Nama:</label>
@@ -121,7 +121,7 @@
                                           <h2 class="text-xl font-bold mb-4">Edit Barang</h2>
                                           <button @click="editOpen = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-lg">&times;</button>
 
-                                          <form action="{{ route('admin.barangs.update', $barang->id) }}" method="POST">
+                                          <form action="{{ route('kasir.barangs.update', $barang->id) }}" method="POST">
                                               @csrf
                                               @method('PUT')
                                               <div class="mb-4">
@@ -149,7 +149,7 @@
                                   </div>
 
                               </div>
-                                <form action="{{ route('admin.barangs.destroy', $barang->id) }}" method="POST" class="inline" id="delete-form-{{ $barang->id }}">
+                                <form action="{{ route('kasir.barangs.destroy', $barang->id) }}" method="POST" class="inline" id="delete-form-{{ $barang->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" onclick="confirmDelete({{ $barang->id }})" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"><i class="fa fa-trash"></i> Delete</button>

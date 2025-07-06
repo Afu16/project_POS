@@ -1,4 +1,4 @@
-@extends('admin.jenis_barangs.layout')
+@extends('kasir.jenis_barangs.layout')
 
 @section('content')
 
@@ -18,7 +18,7 @@
             <h2 class="text-xl font-bold mb-4">Tambah Jenis Barang</h2>
             <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-lg">&times;</button>
 
-            <form action="{{ route('admin.jenis_barangs.store') }}" method="POST">
+            <form action="{{ route('kasir.jenis_barangs.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label class="block font-semibold mb-1">Jenis Barang:</label>
@@ -80,7 +80,7 @@
                                     <div @click.away="editOpen = false" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
                                         <h2 class="text-xl font-bold mb-4">Edit Jenis Barang</h2>
                                         <button @click="editOpen = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-lg">&times;</button>
-                                        <form action="{{ route('admin.jenis_barangs.update', $jenis_barang->id) }}" method="POST">
+                                        <form action="{{ route('kasir.jenis_barangs.update', $jenis_barang->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="mb-4">
@@ -97,7 +97,7 @@
                             </div>
 
                             <!-- Delete -->
-                            <form action="{{ route('admin.jenis_barangs.destroy', $jenis_barang->id) }}" method="POST" class="inline" id="delete-form-{{ $jenis_barang->id }}">
+                            <form action="{{ route('kasir.jenis_barangs.destroy', $jenis_barang->id) }}" method="POST" class="inline" id="delete-form-{{ $jenis_barang->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" onclick="confirmDelete({{ $jenis_barang->id }})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 inline-block">

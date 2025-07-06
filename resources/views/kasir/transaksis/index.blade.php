@@ -18,7 +18,7 @@
             <h2 class="text-lg font-bold mb-3">Tambah Transaksi</h2>
             <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
 
-            <form action="{{ route('transaksis.store') }}" method="POST" class="space-y-3">
+            <form action="{{ route('kasir.transaksis.store') }}" method="POST" class="space-y-3">
                 @csrf
                 <div>
                     <label class="block text-sm font-semibold mb-1">Nama Barang:</label>
@@ -139,7 +139,7 @@
                                         <h2 class="text-lg font-bold mb-3">Edit Transaksi</h2>
                                         <button @click="editOpen = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
 
-                                        <form action="{{ route('transaksis.update', $transaksi->id) }}" method="POST" class="space-y-3">
+                                        <form action="{{ route('kasir.transaksis.update', $transaksi->id) }}" method="POST" class="space-y-3">
                                             @csrf
                                             @method('PUT')
                                             <div>
@@ -194,7 +194,7 @@
                             </div>
 
                             {{-- Delete --}}
-                            <form action="{{ route('transaksis.destroy', $transaksi->id) }}" method="POST" class="inline" id="delete-form-{{ $transaksi->id }}">
+                            <form action="{{ route('kasir.transaksis.destroy', $transaksi->id) }}" method="POST" class="inline" id="delete-form-{{ $transaksi->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" onclick="confirmDelete({{ $transaksi->id }})" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 w-full"><i class="fa fa-trash"></i> Delete</button>

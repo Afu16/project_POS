@@ -49,18 +49,18 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::resource('admin/barangs', BarangController::class);
-
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('barangs', BarangController::class);
+    Route::resource('jenis_barangs', Jenis_barangController::class);
     Route::resource('transaksis', TransaksiController::class);
 });
 
-Route::resource('admin/jenis_barangs', Jenis_barangController::class);
 
 Route::prefix('kasir')->name('kasir.')->group(function () {
+    Route::resource('barangs', BarangController::class);
+    Route::resource('jenis_barangs', Jenis_barangController::class);
     Route::resource('transaksis', TransaksiController::class);
 });
-
 
 
 require __DIR__.'/auth.php';

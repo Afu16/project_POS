@@ -46,13 +46,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/barangs') }}" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg">
+                        <a href="{{ url('kasir/barangs') }}" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg">
                             <i class="fas fa-box-open w-5 text-center"></i>
                             <span>Produk</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/jenis_barangs') }}" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg">
+                        <a href="{{ url('kasir/jenis_barangs') }}" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg">
                             <i class="fas fa-tags w-5 text-center"></i>
                             <span>Jenis Barang</span>
                         </a>

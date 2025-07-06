@@ -16,10 +16,10 @@ class BarangController extends Controller
     public function index()
     {
         $barangs = Barang::latest()->paginate(5);
+        $role = request()->segment(1);
 
-        return view('admin.barangs.index',compact('barangs'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view($role . '.barangs.index', compact('barangs'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -27,7 +27,8 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('admin.barangs.create');
+        $role = request()->segment(1);
+        return view($role . '.barangs.create');
     }
 
     /**
@@ -36,17 +37,17 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-          'nama'=>'required',
-          'stok'=>'required',
-          'jenis'=>'required',
-          'harga'=>'required',
-
+            'nama' => 'required',
+            'stok' => 'required',
+            'jenis' => 'required',
+            'harga' => 'required',
         ]);
 
         Barang::create($request->all());
 
-        return redirect()->route('admin.barangs.index')
-        ->with('Berhasil','barang berhasil masuk');
+        $role = request()->segment(1);
+        return redirect()->route($role . '.barangs.index')
+            ->with('Berhasil', 'Barang berhasil masuk');
     }
 
     /**
@@ -54,7 +55,8 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        return view('admin.barangs.show',compact('barang'));
+        $role = request()->segment(1);
+        return view($role . '.barangs.show', compact('barang'));
     }
 
     /**
@@ -62,7 +64,8 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        return view('admin.barangs.edit', compact('barang'));
+        $role = request()->segment(1);
+        return view($role . '.barangs.edit', compact('barang'));
     }
 
     /**
@@ -71,15 +74,17 @@ class BarangController extends Controller
     public function update(Request $request, Barang $barang)
     {
         $request->validate([
-         'nama'=>'required',
-          'stok'=>'required',
-          'jenis'=>'required',
-          'harga'=>'required',
-
+            'nama' => 'required',
+            'stok' => 'required',
+            'jenis' => 'required',
+            'harga' => 'required',
         ]);
-         $barang->update($request->all());
-         return redirect()->route('admin.barangs.index')
-         ->with('Berhasil','barang berhasil update');
+
+        $barang->update($request->all());
+
+        $role = request()->segment(1);
+        return redirect()->route($role . '.barangs.index')
+            ->with('Berhasil', 'Barang berhasil update');
     }
 
     /**
@@ -88,8 +93,9 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         $barang->delete();
-        return redirect()->route('admin.barangs.index')
-        ->with('Berhasil','barang berhasil delete');
-    } 
 
+        $role = request()->segment(1);
+        return redirect()->route($role . '.barangs.index')
+            ->with('Berhasil', 'Barang berhasil delete');
+    }
 }

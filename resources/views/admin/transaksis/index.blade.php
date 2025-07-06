@@ -18,7 +18,7 @@
             <h2 class="text-lg font-bold mb-3">Tambah Transaksi</h2>
             <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
 
-            <form action="{{ route('transaksis.store') }}" method="POST" class="space-y-3">
+            <form action="{{ route('admin.transaksis.store') }}" method="POST" class="space-y-3">
                 @csrf
                 <div>
                     <label class="block text-sm font-semibold mb-1">Nama Barang:</label>

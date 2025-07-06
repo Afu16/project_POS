@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-
-
 class Jenis_barangController extends Controller
 {
     /**
@@ -17,10 +15,11 @@ class Jenis_barangController extends Controller
      */
     public function index()
     {
-        $jenis_barangs = jenis_barang::latest()->paginate();
+        $jenis_barangs = Jenis_barang::latest()->paginate();
+        $role = request()->segment(1);
 
-        return view('admin.jenis_barangs.index', compact('jenis_barangs'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view($role . '.jenis_barangs.index', compact('jenis_barangs'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -28,7 +27,8 @@ class Jenis_barangController extends Controller
      */
     public function create()
     {
-        return view('admin.Jenis_barangs.create');
+        $role = request()->segment(1);
+        return view($role . '.jenis_barangs.create');
     }
 
     /**
@@ -39,11 +39,12 @@ class Jenis_barangController extends Controller
         $request->validate([
             'j_barang' => 'required',
         ]);
-        
 
         Jenis_barang::create($request->all());
-        return redirect()->route('admin.jenis_barangs.index')
-        ->with('Berhasil','jenis barang berhasil masuk');
+
+        $role = request()->segment(1);
+        return redirect()->route($role . '.jenis_barangs.index')
+            ->with('Berhasil', 'Jenis barang berhasil masuk');
     }
 
     /**
@@ -51,7 +52,8 @@ class Jenis_barangController extends Controller
      */
     public function show(Jenis_barang $jenis_barang)
     {
-        return view('admin.jenis_barangs.show', compact('jenis_barang'));
+        $role = request()->segment(1);
+        return view($role . '.jenis_barangs.show', compact('jenis_barang'));
     }
 
     /**
@@ -59,7 +61,8 @@ class Jenis_barangController extends Controller
      */
     public function edit(Jenis_barang $jenis_barang)
     {
-        return view('admin.jenis_barangs.edit', compact('jenis_barang'));
+        $role = request()->segment(1);
+        return view($role . '.jenis_barangs.edit', compact('jenis_barang'));
     }
 
     /**
@@ -68,13 +71,14 @@ class Jenis_barangController extends Controller
     public function update(Request $request, Jenis_barang $jenis_barang)
     {
         $request->validate([
+            'j_barang' => 'required',
+        ]);
 
-            'j_barang'=>'required',
-         ]);
- 
-         $jenis_barang->update($request->all());
-         return redirect()->route('admin.jenis_barangs.index')
-         ->with('Berhasil','barang berhasil update');
+        $jenis_barang->update($request->all());
+
+        $role = request()->segment(1);
+        return redirect()->route($role . '.jenis_barangs.index')
+            ->with('Berhasil', 'Jenis barang berhasil update');
     }
 
     /**
@@ -83,7 +87,9 @@ class Jenis_barangController extends Controller
     public function destroy(Jenis_barang $jenis_barang)
     {
         $jenis_barang->delete();
-        return redirect()->route('admin.jenis_barangs.index')
-        ->with('Berhasil','barang berhasil delete');
+
+        $role = request()->segment(1);
+        return redirect()->route($role . '.jenis_barangs.index')
+            ->with('Berhasil', 'Jenis barang berhasil delete');
     }
 }
