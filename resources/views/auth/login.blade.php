@@ -151,7 +151,7 @@
 
         <div class="right-panel">
             <div class="login-container">
-                <h1>Login Kasir POS</h1>
+                <h1>Login Kasir</h1>
 
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />

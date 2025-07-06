@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\Jenis_barangController;
+use App\Http\Controllers\TransaksiController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -45,6 +48,19 @@ Route::middleware(['auth'])->group(function () {
         return view('kasir.dashboard'); // bikin view-nya juga
     });
 });
+
+Route::resource('admin/barangs', BarangController::class);
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('transaksis', TransaksiController::class);
+});
+
+Route::resource('admin/jenis_barangs', Jenis_barangController::class);
+
+Route::prefix('kasir')->name('kasir.')->group(function () {
+    Route::resource('transaksis', TransaksiController::class);
+});
+
 
 
 require __DIR__.'/auth.php';
